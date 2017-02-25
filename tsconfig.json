@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/js/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5"
+    },
+    "files": [
+        "./src/IViewModel.ts",
+        "./src/ViewModelConfigurator.ts",
+        "./src/BaseViewModel.ts",
+        "./src/DefaultViewModel.ts",
+        "./src/main.ts"
+    ]
+}
