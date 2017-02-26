@@ -10,4 +10,5 @@ for(var key in viewModel){
     console.log("instance prop name:", key);
 }
 
+// test
 ko.applyBindings(viewModel, document.getElementById('container'));

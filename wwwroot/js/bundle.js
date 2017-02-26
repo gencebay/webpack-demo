@@ -6068,6 +6068,7 @@ window.viewModel = viewModel;
 for (var key in viewModel) {
     console.log("instance prop name:", key);
 }
+// test
 __WEBPACK_IMPORTED_MODULE_2_knockout__["applyBindings"](viewModel, document.getElementById('container'));
 
 
