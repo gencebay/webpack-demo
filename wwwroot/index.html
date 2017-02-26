@@ -1,8 +1,16 @@
 <html>
     <head>
-        <title>WebPack 2 Demo</title>
+        <title>WebPack Demo</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
+        <div id="container">
+            <div>
+                <span data-bind="text: count">0</span>
+            </div>
+            <button data-bind="event: {click : counter}">Click Me!</button>
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="js/bundle.js"></script>
     </body>
 </html>

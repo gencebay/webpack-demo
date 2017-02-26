@@ -7,10 +7,9 @@
         "target": "es5"
     },
     "files": [
-        "./src/IViewModel.ts",
         "./src/ViewModelConfigurator.ts",
         "./src/BaseViewModel.ts",
         "./src/DefaultViewModel.ts",
-        "./src/main.ts"
+        "./src/Main.ts"
     ]
 }

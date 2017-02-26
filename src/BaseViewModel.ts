@@ -1,8 +1,13 @@
 import { ViewModelConfigurator } from "./ViewModelConfigurator"
 import * as ko from "knockout"
 
-export class BaseViewModel extends Object {
+export class BaseViewModel {
+    id: KnockoutObservable<string>
+
     constructor (configurator: ViewModelConfigurator) {
-        super();
+        this.id = ko.observable("");
+    }
+    put() {
+        console.log("Put executed.");
     }
 }

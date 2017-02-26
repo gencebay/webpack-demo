@@ -9,11 +9,27 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { BaseViewModel } from './BaseViewModel';
+import * as ko from "knockout";
 var DefaultViewModel = (function (_super) {
     __extends(DefaultViewModel, _super);
     function DefaultViewModel(configurator, initCallback) {
-        return _super.call(this, configurator) || this;
+        var _this = _super.call(this, configurator) || this;
+        _this._initCallback = initCallback;
+        _this.count = ko.observable(0);
+        return _this;
     }
+    DefaultViewModel.prototype.create = function () {
+        console.log("View model created.");
+        if (this._initCallback) {
+            console.log("init Callback Context:", this._initCallback(this));
+        }
+        return;
+    };
+    DefaultViewModel.prototype.counter = function () {
+        var count = this.count();
+        console.log("Counter triggered:", count);
+        this.count(count + 1);
+    };
     return DefaultViewModel;
 }(BaseViewModel));
 export { DefaultViewModel };

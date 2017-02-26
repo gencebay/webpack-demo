@@ -1,9 +1,11 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-    entry: './build/main.ts',
+    entry: './src/build/main.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'wwwroot/js')
+        path: path.resolve(__dirname, 'wwwroot/js'),
+        publicPath: "/wwwroot/",
+        filename: "bundle.js"    
     }
 };
