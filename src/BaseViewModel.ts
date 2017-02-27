@@ -2,12 +2,12 @@ import { ViewModelConfigurator } from "./ViewModelConfigurator"
 import * as ko from "knockout"
 
 export class BaseViewModel {
-    id: KnockoutObservable<string>
-
+    excludeProps:string[] = ["data", "actionName", "canSave", "options", "objectState"];
     constructor (configurator: ViewModelConfigurator) {
-        this.id = ko.observable("");
+        
     }
-    put() {
-        console.log("Put executed.");
+
+    executeWebResult(context: any) {
+        
     }
 }

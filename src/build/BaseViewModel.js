@@ -1,10 +1,8 @@
-import * as ko from "knockout";
 var BaseViewModel = (function () {
     function BaseViewModel(configurator) {
-        this.id = ko.observable("");
+        this.excludeProps = ["data", "actionName", "canSave", "options", "objectState"];
     }
-    BaseViewModel.prototype.put = function () {
-        console.log("Put executed.");
+    BaseViewModel.prototype.executeWebResult = function (context) {
     };
     return BaseViewModel;
 }());

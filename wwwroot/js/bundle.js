@@ -6034,16 +6034,12 @@ var ViewModelConfigurator = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_knockout__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseViewModel; });
-
 var BaseViewModel = (function () {
     function BaseViewModel(configurator) {
-        this.id = __WEBPACK_IMPORTED_MODULE_0_knockout__["observable"]("");
+        this.excludeProps = ["data", "actionName", "canSave", "options", "objectState"];
     }
-    BaseViewModel.prototype.put = function () {
-        console.log("Put executed.");
+    BaseViewModel.prototype.executeWebResult = function (context) {
     };
     return BaseViewModel;
 }());
