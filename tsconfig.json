@@ -1,15 +1,19 @@
 {
     "compilerOptions": {
-        "outDir": "./build/js/",
+        "outDir": "./src/build/",
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "es6",
         "target": "es5"
     },
     "files": [
-        "./src/ViewModelConfigurator.ts",
+        "./src/Types.ts",
         "./src/BaseViewModel.ts",
         "./src/DefaultViewModel.ts",
         "./src/Main.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
     ]
 }

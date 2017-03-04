@@ -5,6 +5,9 @@ var runSequence = require('run-sequence');
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var tsProject = ts.createProject('tsconfig.json');
+var bodyParser = require('body-parser');
+var multer = require('multer'); // v1.0.5
+var upload = multer(); // for parsing multipart/form-data
 
 gulp.task("ts:build", function () {
     var tsResult = gulp.src("src/*.ts")
@@ -31,12 +34,22 @@ gulp.task("webpack-dev-server", function(callback) {
 
     gutil.log(config.output.publicPath);
 
-	new WebpackDevServer(webpack(require('./webpack.config.js')), {
+	var server = new WebpackDevServer(webpack(require('./webpack.config.js')), {
         publicPath: config.output.publicPath,
 		stats: {
 			colors: true
 		}
-	}).listen(8080, "localhost", function(err) {
+	})
+    
+    server.app.use(bodyParser.json()); // for parsing application/json
+    server.app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+    server.app.post('/api/savemodel', upload.array(), function (req, res, next) {
+        console.log(req.body);
+        res.json(req.body);
+    });
+    
+    server.listen(8080, "localhost", function(err) {
 		if(err) throw new gutil.PluginError("webpack-dev-server", err);
 		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/wwwroot/index.html");
 	});

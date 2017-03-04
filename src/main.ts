@@ -1,9 +1,40 @@
 import { BaseViewModel } from './BaseViewModel'
 import { DefaultViewModel } from './DefaultViewModel'
-import { ViewModelConfigurator } from './ViewModelConfigurator'
+import { ViewModelConfigurator, PropertyDefinition, InputType } from './Types'
 import * as ko from "knockout"
 
-let viewModel = new DefaultViewModel(new ViewModelConfigurator(), (model) => { console.log("init callback", model) });
+let containerId = "container";
+
+var prop1:PropertyDefinition = {
+    id:"1",
+    inputType:InputType.Text,
+    label:"User Fullname",
+    name:"Fullname",
+    originalName:"fullname",
+    type:"String"
+};
+
+var prop2:PropertyDefinition = {
+    id:"2",
+    inputType:InputType.Text,
+    label:"Phone Number",
+    name:"Phone Number",
+    originalName:"phone",
+    type:"String"
+};
+
+let properties:PropertyDefinition[] = [
+    prop1,
+    prop2
+];
+
+let configurator = new ViewModelConfigurator(containerId);
+configurator.properties = [
+    prop1,
+    prop2
+];
+
+let viewModel = new DefaultViewModel(configurator, (model) => { console.log("init callback", model) });
 (<any>window).viewModel = viewModel;
 
 for(var key in viewModel){
@@ -11,4 +42,4 @@ for(var key in viewModel){
 }
 
 // test
-ko.applyBindings(viewModel, document.getElementById('container'));
+ko.applyBindings(viewModel, document.getElementById(containerId));

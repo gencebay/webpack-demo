@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/wwwroot/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -5974,9 +5974,137 @@ ko.exportSymbol('nativeTemplateEngine', ko.nativeTemplateEngine);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseViewModel__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_knockout__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_knockout__);
+/* unused harmony export ResultState */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InputType; });
+/* unused harmony export PropertyDefinition */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ViewModelConfigurator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PropertyChangedContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PropertyChangedExtenderContext; });
+/* unused harmony export ModelValidationResult */
+/* unused harmony export WebResult */
+/* unused harmony export WebResultOfT */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var ResultState;
+(function (ResultState) {
+    ResultState[ResultState["Unset"] = 0] = "Unset";
+    ResultState[ResultState["Success"] = 1] = "Success";
+    ResultState[ResultState["Warning"] = 2] = "Warning";
+    ResultState[ResultState["Error"] = 3] = "Error";
+    ResultState[ResultState["Invalid"] = 4] = "Invalid";
+    ResultState[ResultState["Fail"] = 5] = "Fail";
+})(ResultState || (ResultState = {}));
+var InputType;
+(function (InputType) {
+    InputType[InputType["CheckBox"] = 0] = "CheckBox";
+    InputType[InputType["Hidden"] = 1] = "Hidden";
+    InputType[InputType["Password"] = 2] = "Password";
+    InputType[InputType["Radio"] = 3] = "Radio";
+    InputType[InputType["Text"] = 4] = "Text";
+    InputType[InputType["Enum"] = 5] = "Enum";
+    InputType[InputType["Select"] = 6] = "Select";
+    InputType[InputType["DateTime"] = 7] = "DateTime";
+})(InputType || (InputType = {}));
+var PropertyDefinition = (function () {
+    function PropertyDefinition() {
+    }
+    return PropertyDefinition;
+}());
+
+var ViewModelConfigurator = (function () {
+    function ViewModelConfigurator(containerId) {
+        this.containerId = containerId;
+    }
+    return ViewModelConfigurator;
+}());
+
+var PropertyChangedContext = (function () {
+    function PropertyChangedContext(name, newValue, viewModel, propertyDefinition) {
+        this.name = name;
+        this.newValue = newValue;
+        this.viewModel = viewModel;
+        this.propertyDefinition = propertyDefinition;
+    }
+    return PropertyChangedContext;
+}());
+
+var PropertyChangedExtenderContext = (function () {
+    function PropertyChangedExtenderContext(containerId, propertyName) {
+        this.containerId = containerId;
+        this.propertyName = propertyName;
+    }
+    return PropertyChangedExtenderContext;
+}());
+
+var ModelValidationResult = (function () {
+    function ModelValidationResult() {
+        this.messages = [];
+    }
+    Object.defineProperty(ModelValidationResult.prototype, "allMessages", {
+        get: function () {
+            return this.messages.join(",");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ModelValidationResult;
+}());
+
+var WebResult = (function () {
+    function WebResult() {
+        this.duration = 2000;
+        this.state = ResultState.Success;
+        this.validations = [];
+    }
+    Object.defineProperty(WebResult.prototype, "isValid", {
+        get: function () {
+            if (this.state != ResultState.Success || this.validations.length > 0) {
+                return false;
+            }
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(WebResult.prototype, "resultState", {
+        get: function () {
+            return ResultState[this.state];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return WebResult;
+}());
+
+var WebResultOfT = (function (_super) {
+    __extends(WebResultOfT, _super);
+    function WebResultOfT(instance) {
+        var _this = _super.call(this) || this;
+        _this.result = instance;
+        return _this;
+    }
+    return WebResultOfT;
+}(WebResult));
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Types__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseViewModel__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_knockout__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultViewModel; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -5990,42 +6118,25 @@ var __extends = (this && this.__extends) || (function () {
 })();
 
 
+
 var DefaultViewModel = (function (_super) {
     __extends(DefaultViewModel, _super);
     function DefaultViewModel(configurator, initCallback) {
         var _this = _super.call(this, configurator) || this;
         _this._initCallback = initCallback;
-        _this.count = __WEBPACK_IMPORTED_MODULE_1_knockout__["observable"](0);
+        _this.count = __WEBPACK_IMPORTED_MODULE_2_knockout__["observable"](0);
+        _this.phone = __WEBPACK_IMPORTED_MODULE_2_knockout__["observable"]("").extend({ propertyChanged: new __WEBPACK_IMPORTED_MODULE_0__Types__["c" /* PropertyChangedExtenderContext */](configurator.containerId, "phone") });
         return _this;
     }
-    DefaultViewModel.prototype.create = function () {
-        console.log("View model created.");
-        if (this._initCallback) {
-            console.log("init Callback Context:", this._initCallback(this));
-        }
-        return;
-    };
     DefaultViewModel.prototype.counter = function () {
         var count = this.count();
         console.log("Counter triggered:", count);
-        this.count(count + 1);
+        count = count + 1;
+        this.submitText("Clicked-" + count);
+        this.count(count);
     };
     return DefaultViewModel;
-}(__WEBPACK_IMPORTED_MODULE_0__BaseViewModel__["a" /* BaseViewModel */]));
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewModelConfigurator; });
-var ViewModelConfigurator = (function () {
-    function ViewModelConfigurator() {
-    }
-    return ViewModelConfigurator;
-}());
+}(__WEBPACK_IMPORTED_MODULE_1__BaseViewModel__["a" /* BaseViewModel */]));
 
 
 
@@ -6034,16 +6145,114 @@ var ViewModelConfigurator = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseViewModel; });
-var BaseViewModel = (function () {
-    function BaseViewModel(configurator) {
-        this.excludeProps = ["data", "actionName", "canSave", "options", "objectState"];
+/* unused harmony export httpGet */
+/* harmony export (immutable) */ __webpack_exports__["a"] = httpPost;
+function httpGet(url, successCallback, failureCallback) {
+    var headers = [];
+    for (var _i = 3; _i < arguments.length; _i++) {
+        headers[_i - 3] = arguments[_i];
     }
-    BaseViewModel.prototype.executeWebResult = function (context) {
-    };
-    return BaseViewModel;
+    var ajax = new Ajax();
+    ajax.send(url, HttpVerb.GET, null, successCallback, failureCallback, headers);
+}
+function httpPost(url, data, successCallback, failureCallback) {
+    var headers = [];
+    for (var _i = 4; _i < arguments.length; _i++) {
+        headers[_i - 4] = arguments[_i];
+    }
+    var ajax = new Ajax();
+    ajax.send(url, HttpVerb.POST, data, successCallback, failureCallback, headers);
+}
+var HttpVerb = (function () {
+    function HttpVerb() {
+    }
+    return HttpVerb;
 }());
-
+HttpVerb.CONNECT = 'CONNECT';
+HttpVerb.DELETE = 'DELETE';
+HttpVerb.GET = 'GET';
+HttpVerb.HEAD = 'HEAD';
+HttpVerb.OPTIONS = 'OPTIONS';
+HttpVerb.POST = 'POST';
+HttpVerb.PUT = 'PUT';
+HttpVerb.TRACE = 'TRACE';
+var Ajax = (function () {
+    function Ajax() {
+    }
+    Ajax.prototype.send = function (url, method, data, successCallback, failureCallback, headers) {
+        var _this = this;
+        var isComplete = false;
+        var request = this.getRequestObject();
+        var uniqueUrl = this.getCacheBusterUrl(url);
+        request.open(method, url, true);
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        request.setRequestHeader('Accept', 'application/json');
+        if (data !== null) {
+            request.setRequestHeader('Content-type', 'application/json');
+        }
+        for (var i = 0; i < headers.length; ++i) {
+            request.setRequestHeader(headers[i].name, headers[i].value);
+        }
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && !isComplete) {
+                isComplete = true;
+                if (_this.isResponseSuccess(request.status)) {
+                    successCallback.call(request, request);
+                }
+                else {
+                    failureCallback.call(request, request);
+                }
+            }
+        };
+        if (data !== null) {
+            request.send(JSON.stringify(data));
+        }
+        else {
+            request.send();
+        }
+    };
+    Ajax.prototype.getRequestObject = function () {
+        var requestObject;
+        if (XMLHttpRequest) {
+            requestObject = new XMLHttpRequest();
+        }
+        else {
+            try {
+                requestObject = new ActiveXObject('Msxml2.XMLHTTP');
+            }
+            catch (e) {
+                try {
+                    requestObject = new ActiveXObject('Microsoft.XMLHTTP');
+                }
+                catch (e) { }
+            }
+        }
+        return requestObject;
+    };
+    Ajax.prototype.getCacheBusterUrl = function (url) {
+        if (url.indexOf('?') > -1) {
+            url += '&' + new Date().getTime();
+        }
+        else {
+            url += '?' + new Date().getTime();
+        }
+        return url;
+    };
+    Ajax.prototype.isResponseSuccess = function (responseCode) {
+        var firstDigit = responseCode.toString().substring(0, 1);
+        switch (firstDigit) {
+            case '1':
+            case '2':
+            case '3':
+                // Response code is in 100, 200 or 300 range :)
+                return true;
+            default:
+                // Response code is is 400 or 500 range :(
+                return false;
+        }
+    };
+    return Ajax;
+}());
 
 
 /***/ }),
@@ -6051,21 +6260,97 @@ var BaseViewModel = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Types__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Ajax__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_knockout__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseViewModel; });
+
+
+
+__WEBPACK_IMPORTED_MODULE_2_knockout__["extenders"].propertyChanged = function (target, extenderContext) {
+    if (target) {
+        target.subscribe(function (newValue) {
+            var domContainer;
+            domContainer = document.getElementById(extenderContext.containerId);
+            if (!domContainer) {
+                throw new Error("ContainerId");
+            }
+            var viewModel = __WEBPACK_IMPORTED_MODULE_2_knockout__["dataFor"](domContainer);
+            var properties = viewModel.configurator.properties;
+            var propertyDefinition = __WEBPACK_IMPORTED_MODULE_2_knockout__["utils"].arrayFirst(properties, function (prop) { return prop.originalName == extenderContext.propertyName; });
+            var changedContext = new __WEBPACK_IMPORTED_MODULE_0__Types__["d" /* PropertyChangedContext */](extenderContext.propertyName, newValue, viewModel, propertyDefinition);
+            console.log("Property changed context:", changedContext);
+        });
+    }
+};
+var BaseViewModel = (function () {
+    function BaseViewModel(configurator) {
+        this.excludeProps = ["data", "submitText", "canSave", "configurator", "objectState"];
+        this.configurator = configurator;
+        this.submitText = __WEBPACK_IMPORTED_MODULE_2_knockout__["observable"]("Create")
+            .extend({ propertyChanged: new __WEBPACK_IMPORTED_MODULE_0__Types__["c" /* PropertyChangedExtenderContext */](configurator.containerId, "submitText") });
+    }
+    BaseViewModel.prototype.successCallback = function (context) {
+    };
+    BaseViewModel.prototype.failureCallback = function (context) {
+    };
+    BaseViewModel.prototype.executeWebResult = function (context) {
+    };
+    BaseViewModel.prototype.create = function () {
+        __WEBPACK_IMPORTED_MODULE_1__Ajax__["a" /* httpPost */]("/api/savemodel", { id: 1, name: "jhon" }, this.successCallback, this.failureCallback);
+    };
+    return BaseViewModel;
+}());
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DefaultViewModel__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ViewModelConfigurator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DefaultViewModel__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_knockout__);
 
 
 
-var viewModel = new __WEBPACK_IMPORTED_MODULE_0__DefaultViewModel__["a" /* DefaultViewModel */](new __WEBPACK_IMPORTED_MODULE_1__ViewModelConfigurator__["a" /* ViewModelConfigurator */](), function (model) { console.log("init callback", model); });
+var containerId = "container";
+var prop1 = {
+    id: "1",
+    inputType: __WEBPACK_IMPORTED_MODULE_1__Types__["a" /* InputType */].Text,
+    label: "User Fullname",
+    name: "Fullname",
+    originalName: "fullname",
+    type: "String"
+};
+var prop2 = {
+    id: "2",
+    inputType: __WEBPACK_IMPORTED_MODULE_1__Types__["a" /* InputType */].Text,
+    label: "Phone Number",
+    name: "Phone Number",
+    originalName: "phone",
+    type: "String"
+};
+var properties = [
+    prop1,
+    prop2
+];
+var configurator = new __WEBPACK_IMPORTED_MODULE_1__Types__["b" /* ViewModelConfigurator */](containerId);
+configurator.properties = [
+    prop1,
+    prop2
+];
+var viewModel = new __WEBPACK_IMPORTED_MODULE_0__DefaultViewModel__["a" /* DefaultViewModel */](configurator, function (model) { console.log("init callback", model); });
 window.viewModel = viewModel;
 for (var key in viewModel) {
     console.log("instance prop name:", key);
 }
 // test
-__WEBPACK_IMPORTED_MODULE_2_knockout__["applyBindings"](viewModel, document.getElementById('container'));
+__WEBPACK_IMPORTED_MODULE_2_knockout__["applyBindings"](viewModel, document.getElementById(containerId));
 
 
 /***/ })
