@@ -3,6 +3,7 @@ import { DefaultViewModel } from './DefaultViewModel'
 import { ViewModelConfigurator, PropertyDefinition, InputType } from './Types'
 import * as ko from "knockout"
 
+// dom element id
 let containerId = "container";
 
 var prop1:PropertyDefinition = {

@@ -1,6 +1,7 @@
 import { DefaultViewModel } from './DefaultViewModel';
 import { ViewModelConfigurator, InputType } from './Types';
 import * as ko from "knockout";
+// dom element id
 var containerId = "container";
 var prop1 = {
     id: "1",
