@@ -6,6 +6,7 @@
         "target": "es5"
     },
     "files": [
+        "./src/PubSub.ts",
         "./src/Types.ts",
         "./src/BaseViewModel.ts",
         "./src/DefaultViewModel.ts",
