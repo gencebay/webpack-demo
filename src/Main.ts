@@ -1,4 +1,3 @@
-/// <reference path="PubSub.ts" />
 import { BaseViewModel } from './BaseViewModel'
 import { DefaultViewModel } from './DefaultViewModel'
 import { ViewModelConfigurator, PropertyDefinition, InputType } from './Types'
