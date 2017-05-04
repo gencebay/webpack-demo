@@ -1,6 +1,12 @@
-import { ViewModelConfigurator, PropertyChangedContext, PropertyChangedExtenderContext } from './Types'
+import { 
+    ViewModelConfigurator, 
+    PropertyChangedContext, 
+    PropertyChangedExtenderContext,
+    Events
+} from './Types'
 import * as ajax from "./Ajax"
 import * as ko from "knockout"
+import * as ps from "./PubSub"
 
 (<any>ko.extenders).propertyChanged = function(target:KnockoutObservable<any>, extenderContext:PropertyChangedExtenderContext):any {
     if(target) {
@@ -10,7 +16,6 @@ import * as ko from "knockout"
             if(!domContainer) {
                 throw new Error("ContainerId");
             }
-
             let viewModel: BaseViewModel = ko.dataFor(domContainer);
             var properties = viewModel.configurator.properties;
             var propertyDefinition = ko.utils.arrayFirst(properties, (prop) => prop.originalName == extenderContext.propertyName);
@@ -19,8 +24,8 @@ import * as ko from "knockout"
                 newValue,
                 viewModel,
                 propertyDefinition
-            )    
-            console.log("Property changed context:", changedContext);
+            )
+            ps.PubSub.publish(Events[Events.PropertyChanged], changedContext);
         });
     }
 }

@@ -9,6 +9,10 @@ export enum ResultState {
     Fail
 }
 
+export enum Events {
+    PropertyChanged = 0
+}
+
 export enum InputType
 {
     CheckBox=0,

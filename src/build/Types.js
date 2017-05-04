@@ -17,6 +17,10 @@ export var ResultState;
     ResultState[ResultState["Invalid"] = 4] = "Invalid";
     ResultState[ResultState["Fail"] = 5] = "Fail";
 })(ResultState || (ResultState = {}));
+export var Events;
+(function (Events) {
+    Events[Events["PropertyChanged"] = 0] = "PropertyChanged";
+})(Events || (Events = {}));
 export var InputType;
 (function (InputType) {
     InputType[InputType["CheckBox"] = 0] = "CheckBox";

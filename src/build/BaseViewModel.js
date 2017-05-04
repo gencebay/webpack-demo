@@ -1,6 +1,7 @@
-import { PropertyChangedContext, PropertyChangedExtenderContext } from './Types';
+import { PropertyChangedContext, PropertyChangedExtenderContext, Events } from './Types';
 import * as ajax from "./Ajax";
 import * as ko from "knockout";
+import * as ps from "./PubSub";
 ko.extenders.propertyChanged = function (target, extenderContext) {
     if (target) {
         target.subscribe(function (newValue) {
@@ -13,7 +14,7 @@ ko.extenders.propertyChanged = function (target, extenderContext) {
             var properties = viewModel.configurator.properties;
             var propertyDefinition = ko.utils.arrayFirst(properties, function (prop) { return prop.originalName == extenderContext.propertyName; });
             var changedContext = new PropertyChangedContext(extenderContext.propertyName, newValue, viewModel, propertyDefinition);
-            console.log("Property changed context:", changedContext);
+            ps.PubSub.publish(Events[Events.PropertyChanged], changedContext);
         });
     }
 };

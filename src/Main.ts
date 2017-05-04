@@ -1,6 +1,6 @@
 import { BaseViewModel } from './BaseViewModel'
 import { DefaultViewModel } from './DefaultViewModel'
-import { ViewModelConfigurator, PropertyDefinition, InputType } from './Types'
+import { ViewModelConfigurator, PropertyDefinition, InputType, Events } from './Types'
 import * as ps from "./PubSub"
 import * as ko from "knockout"
 
@@ -43,10 +43,11 @@ for(var key in viewModel){
     console.log("instance prop name:", key);
 }
 
-ps.PubSub.subscribe("propertyChanged", (topic, context) => {
+ps.PubSub.subscribe(Events[Events.PropertyChanged], (topic, context) => {
     console.log("Global PubSub PropertyChanged: ", context)
 });
 
 (<any>window).PubSub = ps.PubSub;
+
+// apply bindings
 ko.applyBindings(viewModel, document.getElementById(containerId));
-ps.PubSub.publish("propertyChanged", prop1);
