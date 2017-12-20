@@ -22,7 +22,7 @@ export class DefaultViewModel extends BaseViewModel {
   }
   counter() {
     var count = this.count();
-    console.log("Count Trigger:", count);
+    console.log("Count:", count);
     count = count + 1;
     this.submitText("Clicked-" + count);
     this.count(count);
