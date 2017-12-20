@@ -4,25 +4,37 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "start": "webpack-dev-server --hotOnly",
+    "test": "jest",
+    "tsc": "tsc",
+    "clean": "rimraf build",
+    "build": "webpack",
+    "lint": "tslint src/**/*.ts",
+    "watch": "webpack --progress --watch"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@types/knockout": "^3.4.39",
-    "body-parser": "^1.17.0",
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^3.1.5",
-    "multer": "^1.3.0",
-    "run-sequence": "^1.2.2",
-    "ts-loader": "^2.0.1",
-    "typescript": "^2.2.1",
-    "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.5"
+    "@types/knockout": "^3.4.47",
+    "@types/lodash": "^4.14.91",
+    "awesome-typescript-loader": "^3.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "knockout": "^3.4.1"
+    "knockout": "^3.4.1",
+    "lodash": "^4.17.4"
   }
 }

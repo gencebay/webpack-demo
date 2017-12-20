@@ -1,19 +1,9 @@
 {
-    "compilerOptions": {
-        "outDir": "./src/build/",
-        "noImplicitAny": true,
-        "module": "es6",
-        "target": "es5"
-    },
-    "files": [
-        "./src/PubSub.ts",
-        "./src/Types.ts",
-        "./src/BaseViewModel.ts",
-        "./src/DefaultViewModel.ts",
-        "./src/Main.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+  "compilerOptions": {
+    "outDir": "./build",
+    "module": "es6",
+    "target": "es5",
+    "rootDir": "./src",
+    "sourceMap": true
+  }
 }
